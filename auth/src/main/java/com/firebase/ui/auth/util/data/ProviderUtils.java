@@ -212,6 +212,10 @@ public final class ProviderUtils {
                             }
                         }
 
+                        if (allowedProviders.contains(EMAIL_LINK_PROVIDER) && methods.contains(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) && !methods.contains(EMAIL_LINK_PROVIDER)) {
+                            lastSignedInProviders.add(0, signInMethodToProviderId(EMAIL_LINK_PROVIDER));
+                        }
+
                         if (task.isSuccessful() && lastSignedInProviders.isEmpty()
                                 && !methods.isEmpty()) {
                             // There is an existing user who only has unsupported sign in methods
